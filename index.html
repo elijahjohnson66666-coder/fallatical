@@ -339,28 +339,24 @@
       </div>
     </section>
 
-    <section class="section" id="preview">
-      <div class="container grid-2">
-        <article class="panel">
-          <div class="kicker">Promo preview</div>
-          <h2>Drop your own showcase clip here.</h2>
-          <p>This section is ready for a future promo or showcase video. The source is intentionally left blank so you can insert your own file path later without rebuilding the site layout.</p>
-          <ul class="clean">
-            <li><span class="check">✓</span>Replace the blank source with your own MP4 path</li>
-            <li><span class="check">✓</span>Keep the poster area as a clean preview frame</li>
-            <li><span class="check">✓</span>Use it for product showcases, vouches, or server edits</li>
-          </ul>
-        </article>
-        <article class="panel">
-          <div class="kicker">Blank import slot</div>
-          <div style="border-radius:22px; overflow:hidden; border:1px solid var(--color-border); background:linear-gradient(135deg, rgba(255,255,255,.12), rgba(0,0,0,.18)); min-height:320px; display:grid; place-items:center; position:relative; box-shadow:var(--shadow-sm);">
-            <video controls preload="metadata" style="width:100%; height:100%; min-height:320px; object-fit:cover; background:#000;">
-              <source src="" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <div style="position:absolute; inset:auto 1rem 1rem 1rem; padding:.8rem 1rem; border-radius:999px; background:rgba(0,0,0,.5); color:#f4f4f2; backdrop-filter:blur(10px); font-size:var(--text-sm);">Leave src blank, then replace it with your video file later.</div>
-          </div>
-        </article>
+    <section class="section section--split" id="preview">
+      <div class="card card--feature">
+        <div class="kicker">Promo preview</div>
+        <h2>See the showcase before people buy.</h2>
+        <p>Preview the style and quality here before placing an order through Discord.</p>
+        <ul class="checklist" role="list">
+          <li>Muted autoplay showcase clip</li>
+          <li>Quick visual preview before ordering</li>
+          <li>Clean framed player for desktop and mobile</li>
+        </ul>
+      </div>
+      <div class="card media-card">
+        <div class="kicker">Live promo</div>
+        <video class="product-video" autoplay muted loop playsinline controls preload="metadata">
+          <source src="https://files.catbox.moe/h57ywa.mov" type="video/quicktime" />
+          <source src="https://files.catbox.moe/h57ywa.mov" />
+        </video>
+        <div class="media-badge">Promo preview</div>
       </div>
     </section>
 
