@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fallatical Shop</title>
+  <meta name="description" content="Fallatical is a marble themed Discord shop page with a translucent promo video background, product listings, and direct invite calls to action." />
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=zodiak@400,700&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.8rem);
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem; --space-20: 5rem;
+      --radius-sm: 0.45rem; --radius-md: 0.8rem; --radius-lg: 1.2rem; --radius-xl: 1.7rem; --radius-full: 9999px;
+      --font-body: 'Satoshi', Inter, sans-serif; --font-display: 'Zodiak', Georgia, serif;
+      --color-bg: #e9e9e7; --color-surface: rgba(255,255,255,0.76); --color-surface-2: rgba(255,255,255,0.58); --color-border: rgba(10,10,10,0.14); --color-divider: rgba(10,10,10,0.1);
+      --color-text: #101010; --color-text-muted: rgba(16,16,16,0.7); --color-text-faint: rgba(16,16,16,0.5); --color-text-inverse: #f4f4f2; --color-primary: #0f0f0f;
+      --shadow-sm: 0 4px 16px rgba(0,0,0,0.06); --shadow-md: 0 18px 44px rgba(0,0,0,0.10); --shadow-lg: 0 32px 80px rgba(0,0,0,0.16); --content: 1180px; --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-theme="dark"] {
+      --color-bg: #090909; --color-surface: rgba(255,255,255,0.09); --color-surface-2: rgba(255,255,255,0.06); --color-border: rgba(255,255,255,0.12); --color-divider: rgba(255,255,255,0.1);
+      --color-text: #f2f2f0; --color-text-muted: rgba(242,242,240,0.72); --color-text-faint: rgba(242,242,240,0.46); --color-text-inverse: #0f0f0f; --color-primary: #f2f2f0;
+      --shadow-sm: 0 4px 16px rgba(0,0,0,0.18); --shadow-md: 0 18px 44px rgba(0,0,0,0.34); --shadow-lg: 0 32px 80px rgba(0,0,0,0.48);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) { --color-bg: #090909; --color-surface: rgba(255,255,255,0.09); --color-surface-2: rgba(255,255,255,0.06); --color-border: rgba(255,255,255,0.12); --color-divider: rgba(255,255,255,0.1); --color-text: #f2f2f0; --color-text-muted: rgba(242,242,240,0.72); --color-text-faint: rgba(242,242,240,0.46); --color-text-inverse: #0f0f0f; --color-primary: #f2f2f0; }
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      min-height:100dvh;font-family:var(--font-body);font-size:var(--text-base);line-height:1.6;color:var(--color-text);background:var(--color-bg);overflow-x:hidden;position:relative;
+    }
+    .bg-video{position:fixed;inset:0;z-index:-3;overflow:hidden;background:#000}
+    .bg-video video{width:100%;height:100%;object-fit:cover;opacity:.2;filter:grayscale(1) contrast(1.1) brightness(.7)}
+    .bg-video::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,8,.52),rgba(8,8,8,.68)),radial-gradient(circle at 20% 20%,rgba(255,255,255,.08),transparent 28%),radial-gradient(circle at 80% 10%,rgba(255,255,255,.05),transparent 22%)}
+    body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900' viewBox='0 0 900 900'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='900' height='900' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");mix-blend-mode:soft-light;opacity:.9}
+    body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 15% 25%,rgba(255,255,255,.18),transparent 18%),radial-gradient(circle at 82% 72%,rgba(255,255,255,.08),transparent 20%)}
+    a{color:inherit;text-decoration:none} img,svg,video{display:block;max-width:100%;height:auto} button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+    :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
+    .skip-link{position:absolute;left:1rem;top:-100px;background:var(--color-primary);color:var(--color-text-inverse);padding:.8rem 1rem;z-index:1000;border-radius:var(--radius-full)}
+    .skip-link:focus{top:1rem}
+    .container{width:min(calc(100% - 2rem),var(--content));margin-inline:auto}
+    .header{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--color-bg) 48%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--color-divider)}
+    .header__inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:76px}
+    .brand{display:inline-flex;align-items:center;gap:.75rem;font-size:var(--text-sm);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .brand svg{width:34px;height:34px}
+    .nav{display:flex;gap:1.1rem;align-items:center}.nav a{font-size:var(--text-sm);color:var(--color-text-muted)}.nav a:hover{color:var(--color-text)}
+    .header__actions{display:flex;align-items:center;gap:.75rem}
+    .theme-toggle,.menu-toggle,.button{transition:transform var(--transition),background var(--transition),border-color var(--transition),color var(--transition)}
+    .theme-toggle,.menu-toggle{min-width:44px;min-height:44px;display:inline-grid;place-items:center;border-radius:var(--radius-full);border:1px solid var(--color-border);background:var(--color-surface)}
+    .button{min-height:46px;display:inline-flex;align-items:center;justify-content:center;padding:0 1.2rem;border-radius:var(--radius-full);border:1px solid transparent;font-size:var(--text-sm);font-weight:700}
+    .button:hover,.theme-toggle:hover,.menu-toggle:hover,.card:hover,.panel:hover{transform:translateY(-2px)}
+    .button--primary{background:var(--color-primary);color:var(--color-text-inverse);box-shadow:var(--shadow-sm)}
+    .button--secondary{background:var(--color-surface);border-color:var(--color-border);color:var(--color-text)}
+    .menu-toggle{display:none}
+    .hero{padding:clamp(3rem,9vw,8rem) 0 3rem}
+    .hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:2rem;align-items:center}
+    .eyebrow,.pill{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem .95rem;border-radius:var(--radius-full);background:var(--color-surface);border:1px solid var(--color-border);font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-muted);backdrop-filter:blur(10px)}
+    h1,h2,h3{font-family:var(--font-display);line-height:1.04;letter-spacing:-.03em}
+    h1{font-size:var(--text-2xl);max-width:10ch;margin-top:1.2rem}
+    .hero__copy p{margin-top:1rem;max-width:58ch;color:var(--color-text-muted)}
+    .hero__actions,.server-meta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem;align-items:center}
+    .server-meta span,.micro-stat{padding:.65rem 1rem;border-radius:var(--radius-full);background:var(--color-surface-2);border:1px solid var(--color-border);font-size:var(--text-sm);color:var(--color-text-muted);backdrop-filter:blur(10px)}
+    .hero-card,.panel,.card,.cta-panel{position:relative;background:var(--color-surface);border:1px solid var(--color-border);border-radius:26px;box-shadow:var(--shadow-lg);backdrop-filter:blur(15px);overflow:hidden}
+    .hero-card::before,.panel::before,.card::before,.cta-panel::before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,rgba(255,255,255,.2),transparent 42%,rgba(0,0,0,.08));opacity:.8;pointer-events:none}
+    .hero-card>*,.panel>*,.card>*,.cta-panel>*{position:relative;z-index:1}
+    .hero-card{padding:2rem;min-height:560px}
+    .marble-lines{position:absolute;inset:0;opacity:.28;background-image:radial-gradient(ellipse at 15% 25%,transparent 0 54%,rgba(255,255,255,.5) 55%,transparent 56%),radial-gradient(ellipse at 72% 26%,transparent 0 48%,rgba(0,0,0,.22) 49%,transparent 50%),radial-gradient(ellipse at 42% 78%,transparent 0 58%,rgba(255,255,255,.42) 59%,transparent 60%),radial-gradient(ellipse at 80% 80%,transparent 0 55%,rgba(0,0,0,.16) 56%,transparent 57%);filter:blur(8px)}
+    .server-badge{display:inline-flex;gap:.5rem;align-items:center;padding:.5rem .85rem;border-radius:var(--radius-full);background:rgba(0,0,0,.72);color:#f4f4f2;font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase}
+    .mini-dot{width:8px;height:8px;border-radius:50%;background:#8ee28e}
+    .hero-card-top{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}
+    .hero-stat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:3.5rem}
+    .hero-stat{padding:1rem;border-radius:1rem;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.12)}
+    .hero-stat strong{display:block;font-size:var(--text-xl);font-family:var(--font-display)} .hero-stat span{font-size:var(--text-sm);color:var(--color-text-muted)}
+    .section{padding:clamp(3rem,8vw,6rem) 0}
+    .section-heading{display:flex;justify-content:space-between;gap:1.5rem;align-items:end;margin-bottom:2rem}.section-heading p{margin-top:.75rem;max-width:60ch;color:var(--color-text-muted)}
+    .grid-2,.grid-3,.grid-4,.faq-grid{display:grid;gap:1.25rem}.grid-2{grid-template-columns:1fr 1fr}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}.faq-grid{grid-template-columns:1fr 1fr}
+    .panel,.cta-panel{padding:2rem}.card{padding:1.5rem}
+    .kicker{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.14em;color:var(--color-text-faint);margin-bottom:.75rem}
+    .price{display:flex;align-items:baseline;gap:.35rem;margin:1rem 0}.price strong{font-family:var(--font-display);font-size:var(--text-xl)}
+    .tag{display:inline-flex;align-items:center;min-height:32px;padding:0 .75rem;border-radius:var(--radius-full);background:rgba(255,255,255,.08);border:1px solid var(--color-border);font-size:var(--text-xs);color:var(--color-text-muted);margin-right:.45rem;margin-bottom:.45rem}
+    ul.clean{list-style:none;display:grid;gap:.7rem;margin-top:1rem}.clean li{display:flex;gap:.7rem;align-items:flex-start;color:var(--color-text-muted)}
+    .check{width:24px;height:24px;border-radius:50%;display:inline-grid;place-items:center;background:rgba(255,255,255,.12);flex:none}
+    .price-note{font-size:var(--text-sm);color:var(--color-text-faint)}
+    .inventory-list{display:grid;gap:.55rem;margin-top:1rem}.inventory-item{display:flex;justify-content:space-between;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--color-divider)} .inventory-item:last-child{border-bottom:0}
+    .inventory-item strong{font-size:var(--text-sm);font-family:var(--font-body)} .inventory-item span{font-size:var(--text-sm);color:var(--color-text-muted);text-align:right}
+    .cta-panel{display:grid;grid-template-columns:1.05fr .95fr;gap:1.5rem;align-items:center}.metric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.metric{padding:1.25rem;border-radius:20px;background:var(--color-surface-2);border:1px solid var(--color-border)} .metric strong{display:block;font-size:var(--text-xl);font-family:var(--font-display)}
+    .footer{padding:0 0 3rem}.footer-row{display:flex;justify-content:space-between;gap:1rem;align-items:center;padding-top:2rem;border-top:1px solid var(--color-divider)} small{font-size:var(--text-xs);color:var(--color-text-faint)}
+    @media (max-width: 1080px){.hero__grid,.grid-2,.cta-panel,.faq-grid{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr 1fr}.grid-4{grid-template-columns:1fr 1fr}.nav{position:absolute;top:calc(100% + .5rem);right:1rem;left:1rem;padding:1rem;border-radius:20px;background:color-mix(in srgb,var(--color-bg) 82%,transparent);border:1px solid var(--color-border);box-shadow:var(--shadow-md);backdrop-filter:blur(16px);display:none;flex-direction:column;align-items:flex-start}.nav[data-open="true"]{display:flex}.menu-toggle{display:inline-grid}}
+    @media (max-width: 720px){.container{width:min(calc(100% - 1.25rem),var(--content))}.grid-3,.grid-4,.hero-stat-grid,.metric-grid{grid-template-columns:1fr}.hero-card,.panel,.card,.cta-panel{padding:1.4rem}.header__actions .button--secondary{display:none}.footer-row{flex-direction:column;align-items:flex-start}}
+    @media (prefers-reduced-motion: reduce){*,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;animation-iteration-count:1 !important}html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <div class="bg-video" aria-hidden="true">
+    <video autoplay muted loop playsinline>
+      <source src="./wtp4d0j.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="#top" aria-label="Fallatical home">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="6" y="6" width="52" height="52" rx="18" stroke="currentColor" stroke-width="3.5"/>
+          <path d="M20 22H44" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M32 22V44" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M22 32H38" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+        Fallatical
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Primary">
+        <a href="#shop">Shop</a>
+        <a href="#crashers">Crashers</a>
+        <a href="#accessories">Accessories</a>
+        <a href="#preview">Preview</a>
+        <a href="#contact">Contact</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="header__actions">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+        <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme"></button>
+        <a class="button button--secondary" href="#shop">View prices</a>
+        <a class="button button--primary" href="https://discord.gg/jeUYNwpwTM" target="_blank" rel="noopener noreferrer">Go to server</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero container" id="top">
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <div class="eyebrow">Marble storefront • Discord-first • Video backdrop</div>
+          <h1>Fallatical turns your Discord invite into a premium shop page.</h1>
+          <p>Black and white marble panels sit over your promo video with transparency, so the whole site feels active while still keeping the text readable. The page now uses your real shop list, and the online/member stats can auto-update from Discord widget data when the server widget is enabled.</p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="https://discord.gg/jeUYNwpwTM" target="_blank" rel="noopener noreferrer">Join Fallatical</a>
+            <a class="button button--secondary" href="#shop">Browse inventory</a>
+          </div>
+          <div class="server-meta">
+            <span><strong data-discord-online>96</strong> online</span>
+            <span><strong data-discord-members>497</strong> members</span>
+            <span>Est. Dec 2025</span>
+            <span>Better than Criminal.</span>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Featured store card">
+          <div class="marble-lines"></div>
+          <div class="hero-card-top">
+            <div>
+              <div class="server-badge"><span class="mini-dot"></span>Live community</div>
+              <h2 style="font-size:var(--text-xl); margin-top:1rem;">Shop • CASHAPP / VRC+ / $10 NITRO / ROBUX / STEAM GAMES</h2>
+              <p style="margin-top:.85rem; color:var(--color-text-muted); max-width:30ch;">If you buy with $10 Nitro or 1 Month VRC+, you get up to $5 worth of items for free. Boosts only count as $1 because many boosts come from gifted Nitro subscriptions.</p>
+            </div>
+            <span class="tag">Promo active</span>
+          </div>
+          <div class="hero-stat-grid">
+            <div class="hero-stat"><strong>Free $5</strong><span>With $10 Nitro or 1 Month VRC+</span></div>
+            <div class="hero-stat"><strong>$1</strong><span>Boost value credit</span></div>
+            <div class="hero-stat"><strong>8</strong><span>Included crash toggles</span></div>
+            <div class="hero-stat"><strong data-discord-members>497</strong><span>Members seeing the shop</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="shop">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="kicker">Main offers</div>
+            <h2>Your actual promo and pricing, cleaned into a storefront layout.</h2>
+            <p>This keeps the direct style of your server shop list but presents it in a cleaner way for people who land on the page before joining the Discord.</p>
+          </div>
+          <a class="button button--secondary" href="https://discord.gg/jeUYNwpwTM" target="_blank" rel="noopener noreferrer">Buy through Discord</a>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="kicker">Live Discord stats</div>
+            <h3>Auto-updating member counter</h3>
+            <p>If your Discord server widget is enabled, these values can refresh from the public widget JSON automatically.</p>
+            <div class="hero__actions" style="margin-top:1rem;">
+              <span class="micro-stat"><strong data-discord-online>96</strong>&nbsp;online</span>
+              <span class="micro-stat"><strong data-discord-members>497</strong>&nbsp;members</span>
+            </div>
+            <p class="price-note" style="margin-top:1rem;">If the widget is disabled, the page falls back to your manual numbers.</p>
+          </article>
+
+          <article class="card">
+            <div class="kicker">Payment / trade</div>
+            <h3>Accepted buy-ins</h3>
+            <p>Use these as the main payment or trade routes for getting access to items in the server.</p>
+            <div style="margin-top:1rem;">
+              <span class="tag">CashApp</span>
+              <span class="tag">1 Month VRC+</span>
+              <span class="tag">$10 Nitro</span>
+              <span class="tag">Robux</span>
+              <span class="tag">Steam Games</span>
+            </div>
+            <ul class="clean">
+              <li><span class="check">✓</span>$10 Nitro or 1 Month VRC+ gets up to $5 worth of items free</li>
+              <li><span class="check">✓</span>Boosts only count as $1 in value</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="kicker">Crasher avatars</div>
+            <h3>Base avatar pricing</h3>
+            <div class="inventory-list">
+              <div class="inventory-item"><strong>PC Only</strong><span>$3</span></div>
+              <div class="inventory-item"><strong>Quest Only</strong><span>$3</span></div>
+              <div class="inventory-item"><strong>Quest and PC (Limited)</strong><span>$4</span></div>
+              <div class="inventory-item"><strong>PC and Quest</strong><span>$5</span></div>
+            </div>
+            <p class="price-note">If someone buys Quest and PC (Limited), they can only get crashes marked with the (L) sign, with a max of 4 crashes.</p>
+          </article>
+          <article class="card">
+            <div class="kicker">Crash rules</div>
+            <h3>Limits and add-ons</h3>
+            <ul class="clean">
+              <li><span class="check">✓</span>Limit of 8 crashes (toggles) included</li>
+              <li><span class="check">✓</span>Each extra crash toggle costs $0.50</li>
+              <li><span class="check">✓</span>Audios are free if the buyer already has them ready</li>
+              <li><span class="check">✓</span>Custom audios cost $1</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="crashers">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="kicker">Crash inventory</div>
+            <h2>PC, Quest, both, and other crash options.</h2>
+            <p>The lists below keep your names and prices, including which ones are marked limited with the (L) tag.</p>
+          </div>
+        </div>
+        <div class="grid-4">
+          <article class="card">
+            <div class="kicker">PC related</div>
+            <h3>PC crashes</h3>
+            <div class="inventory-list">
+              <div class="inventory-item"><strong>PC Insta (Togglable) (L)</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>PC Nukes (L)</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>PC Balls</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>PC Hard Balls</strong><span>+$1</span></div>
+              <div class="inventory-item"><strong>PC Audio Cut</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>PC Laser (L)</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>PC Invis Target Crash</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>PC Ram Lagger</strong><span>+$3</span></div>
+              <div class="inventory-item"><strong>PC Cube Crasher</strong><span>+$1</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="kicker">Quest related</div>
+            <h3>Quest crashes</h3>
+            <div class="inventory-list">
+              <div class="inventory-item"><strong>Quest Insta (Togglable)</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>Quest Balls (L)</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>Quest Nukes</strong><span>+$1</span></div>
+              <div class="inventory-item"><strong>Quest Mesh (L)</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>Quest World Crash</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>Quest Kill (L)</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>Quest Drainer</strong><span>+$2</span></div>
+              <div class="inventory-item"><strong>Quest Laser</strong><span>+$1.50</span></div>
+              <div class="inventory-item"><strong>Quest Target Crash</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>Quest Gun Crash (L)</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>Quest Lock</strong><span>+$3</span></div>
+              <div class="inventory-item"><strong>Quest 2 Memory Lock</strong><span>+$4</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="kicker">Both</div>
+            <h3>PC + Quest crashes</h3>
+            <div class="inventory-list">
+              <div class="inventory-item"><strong>Mesh</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>Blind</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>Look Crash</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>PC Quest Laser</strong><span>+$1.50</span></div>
+              <div class="inventory-item"><strong>Frame Locker</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>Game Rot</strong><span>+$1</span></div>
+              <div class="inventory-item"><strong>PC Quest Nukes</strong><span>+$1</span></div>
+              <div class="inventory-item"><strong>Frame Freeze</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>PC Quest Target</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>PC Quest Gun Crash</strong><span>Included</span></div>
+              <div class="inventory-item"><strong>World Crasher</strong><span>Included</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="kicker">Other</div>
+            <h3>Extra option</h3>
+            <div class="inventory-list">
+              <div class="inventory-item"><strong>Quest Blind/Keyframe</strong><span>Ask in server</span></div>
+            </div>
+            <div class="kicker" style="margin-top:1.2rem;">Accessories</div>
+            <h3>Accessory pricing</h3>
+            <div class="inventory-list">
+              <div class="inventory-item"><strong>5 Accessories</strong><span>$2</span></div>
+              <div class="inventory-item"><strong>1 Page of Accessories</strong><span>$5</span></div>
+              <div class="inventory-item"><strong>2 Pages of Accessories</strong><span>$10</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="accessories">
+      <div class="container grid-2">
+        <article class="panel">
+          <div class="kicker">Why this works</div>
+          <h2>The video stays behind everything with transparency.</h2>
+          <p>Your attached MP4 now acts as the site background, but it is dimmed, grayscale, and semi-transparent so the marble panels and text stay readable. If you want, I can later make it stronger, blur it more, or only show it in the hero section.</p>
+          <div class="server-meta" style="margin-top:1.25rem;">
+            <span>Autoplay loop</span>
+            <span>Grayscale</span>
+            <span>Transparent overlay</span>
+          </div>
+        </article>
+        <article class="panel">
+          <div class="kicker">Buy flow</div>
+          <h2>Simple Discord-first conversion path.</h2>
+          <ul class="clean">
+            <li><span class="check">✓</span>Land on the page</li>
+            <li><span class="check">✓</span>Read the prices and rules</li>
+            <li><span class="check">✓</span>Click into the Discord server</li>
+            <li><span class="check">✓</span>Purchase or ask questions in-server</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="preview">
+      <div class="container grid-2">
+        <article class="panel">
+          <div class="kicker">Promo preview</div>
+          <h2>Drop your own showcase clip here.</h2>
+          <p>This section is ready for a future promo or showcase video. The source is intentionally left blank so you can insert your own file path later without rebuilding the site layout.</p>
+          <ul class="clean">
+            <li><span class="check">✓</span>Replace the blank source with your own MP4 path</li>
+            <li><span class="check">✓</span>Keep the poster area as a clean preview frame</li>
+            <li><span class="check">✓</span>Use it for product showcases, vouches, or server edits</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <div class="kicker">Blank import slot</div>
+          <div style="border-radius:22px; overflow:hidden; border:1px solid var(--color-border); background:linear-gradient(135deg, rgba(255,255,255,.12), rgba(0,0,0,.18)); min-height:320px; display:grid; place-items:center; position:relative; box-shadow:var(--shadow-sm);">
+            <video controls preload="metadata" style="width:100%; height:100%; min-height:320px; object-fit:cover; background:#000;">
+              <source src="" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div style="position:absolute; inset:auto 1rem 1rem 1rem; padding:.8rem 1rem; border-radius:999px; background:rgba(0,0,0,.5); color:#f4f4f2; backdrop-filter:blur(10px); font-size:var(--text-sm);">Leave src blank, then replace it with your video file later.</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="cta-panel">
+          <div>
+            <div class="kicker">Payment contact</div>
+            <h2>Make ordering easy for buyers.</h2>
+            <p>The payment section now points buyers to your provided Cash App and Discord contact so they know exactly where to pay and who to message after choosing an item.</p>
+            <div class="hero__actions">
+              <a class="button button--primary" href="https://discord.gg/jeUYNwpwTM" target="_blank" rel="noopener noreferrer">Open Discord</a>
+              <a class="button button--secondary" href="#shop">View products</a>
+            </div>
+          </div>
+          <div class="metric-grid">
+            <div class="metric"><strong>$Disturrupt</strong><span>Cash App</span></div>
+            <div class="metric"><strong>@bucketcat</strong><span>Cash App owner</span></div>
+            <div class="metric"><strong>@fallatical</strong><span>Discord contact</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="kicker">FAQ</div>
+            <h2>Quick answers before someone joins.</h2>
+            <p>These keep the most important buy conditions visible without forcing people to read the entire list first.</p>
+          </div>
+        </div>
+        <div class="faq-grid">
+          <article class="card">
+            <h3>What gives the free item bonus?</h3>
+            <p>Buying with $10 Nitro or 1 Month VRC+ gives up to $5 worth of crashers for free.</p>
+          </article>
+          <article class="card">
+            <h3>How much are boosts worth?</h3>
+            <p>Boosts only count as $1 because many people boost from a gifted Nitro subscription.</p>
+          </article>
+          <article class="card">
+            <h3>How many crashes are included?</h3>
+            <p>You get 8 crashes or toggles included, and every extra one costs $0.50.</p>
+          </article>
+          <article class="card">
+            <h3>What about custom audio?</h3>
+            <p>Audios are free if they are already ready, while custom audios cost $1.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-panel">
+          <div>
+            <div class="kicker">Final CTA</div>
+            <h2>Open the server and turn views into buyers.</h2>
+            <p>This version now has your real inventory, your Discord invite, and your video background layered under the marble theme. If you want, I can next add screenshots, a payment contact section, or a more animated premium hero.</p>
+            <div class="hero__actions">
+              <a class="button button--primary" href="https://discord.gg/jeUYNwpwTM" target="_blank" rel="noopener noreferrer">Join the server</a>
+              <a class="button button--secondary" href="#contact">Payment info</a>
+            </div>
+          </div>
+          <div class="metric-grid">
+            <div class="metric"><strong data-discord-online>96</strong><span>Online now</span></div>
+            <div class="metric"><strong data-discord-members>497</strong><span>Members</span></div>
+            <div class="metric"><strong>$5</strong><span>Promo value</span></div>
+            <div class="metric"><strong>8</strong><span>Included crashes</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>
+        <div class="brand" style="margin-bottom:.7rem;">Fallatical</div>
+        
+      </div>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+        <a class="button button--secondary" href="#top">Back to top</a>
+        <a class="button button--primary" href="https://discord.gg/jeUYNwpwTM" target="_blank" rel="noopener noreferrer">Open Discord</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const root = document.documentElement;
+      const toggle = document.querySelector('[data-theme-toggle]');
+      const menuToggle = document.getElementById('menuToggle');
+      const nav = document.getElementById('site-nav');
+      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      function renderThemeIcon(){
+        if(!toggle) return;
+        toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        toggle.innerHTML = theme === 'dark'
+          ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+          : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      }
+      root.setAttribute('data-theme', theme);
+      renderThemeIcon();
+      toggle && toggle.addEventListener('click', function(){
+        theme = theme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', theme);
+        renderThemeIcon();
+      });
+      menuToggle && menuToggle.addEventListener('click', function(){
+        const isOpen = nav.getAttribute('data-open') === 'true';
+        nav.setAttribute('data-open', String(!isOpen));
+        menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      });
+      nav && nav.querySelectorAll('a').forEach(function(link){
+        link.addEventListener('click', function(){
+          nav.setAttribute('data-open', 'false');
+          menuToggle && menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+      const onlineTargets = Array.from(document.querySelectorAll('[data-discord-online]'));
+      const memberTargets = Array.from(document.querySelectorAll('[data-discord-members]'));
+      async function refreshDiscordCounts(){
+        try {
+          const res = await fetch('https://discord.com/api/guilds/1379250521770477628/widget.json', { cache: 'no-store' });
+          if (!res.ok) return;
+          const data = await res.json();
+          const online = typeof data.presence_count === 'number' ? data.presence_count : null;
+          const members = Array.isArray(data.members) ? data.members.length : null;
+          if (online !== null) onlineTargets.forEach(function(el){ el.textContent = String(online); });
+          if (members !== null) memberTargets.forEach(function(el){ el.textContent = String(members); });
+        } catch (err) {}
+      }
+      refreshDiscordCounts();
+      setInterval(refreshDiscordCounts, 60000);
+    })();
+  </script>
+</body>
+</html>
