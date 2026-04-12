@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fallatical | Discord Shop</title>
   <link rel="icon" href="./favicon-hand.jpg" type="image/jpeg">
-  <meta name="description" content="Fallatical is a Discord storefront with pricing, previews, and direct order information." />
+  <meta name="description" content="Fallatical is a polished Discord shop storefront with a marble layout, hosted promo preview, updated pricing, and direct order contacts." />
   <link rel="preconnect" href="https://api.fontshare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,6 +97,11 @@
     @media (max-width: 1080px){.hero__grid,.grid-2,.cta-panel,.faq-grid{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr 1fr}.grid-4{grid-template-columns:1fr 1fr}.nav{position:absolute;top:calc(100% + .5rem);right:1rem;left:1rem;padding:1rem;border-radius:20px;background:color-mix(in srgb,var(--color-bg) 82%,transparent);border:1px solid var(--color-border);box-shadow:var(--shadow-md);backdrop-filter:blur(16px);display:none;flex-direction:column;align-items:flex-start}.nav[data-open="true"]{display:flex}.menu-toggle{display:inline-grid}}
     @media (max-width: 720px){.container{width:min(calc(100% - 1.25rem),var(--content))}.grid-3,.grid-4,.hero-stat-grid,.metric-grid{grid-template-columns:1fr}.hero-card,.panel,.card,.cta-panel{padding:1.4rem}.header__actions .button--secondary{display:none}.footer-row{flex-direction:column;align-items:flex-start}}
     @media (prefers-reduced-motion: reduce){*,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;animation-iteration-count:1 !important}html{scroll-behavior:auto}}
+  
+    .live-pill { display:inline-flex; align-items:center; gap:.45rem; margin-left:.65rem; padding:.28rem .62rem; border:1px solid rgba(255,255,255,.12); border-radius:999px; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.78); }
+    .live-dot { width:.55rem; height:.55rem; border-radius:50%; background:#58d68d; box-shadow:0 0 0 rgba(88,214,141,.6); animation:pulseLive 1.8s ease-out infinite; }
+    @keyframes pulseLive { 0% { box-shadow:0 0 0 0 rgba(88,214,141,.55);} 70% { box-shadow:0 0 0 10px rgba(88,214,141,0);} 100% { box-shadow:0 0 0 0 rgba(88,214,141,0);} }
+
   </style>
 </head>
 <body>
@@ -140,16 +145,15 @@
     <section class="hero container" id="top">
       <div class="hero__grid">
         <div class="hero__copy">
-          <div class="eyebrow">Fallatical • Discord shop</div>
+          <div class="eyebrow">Marble storefront • Discord-first • Production ready</div>
           <h1>Discord shop pricing, previews, and contact info in one place.</h1>
           <p>Check pricing, view the promo, and join the server when you are ready to order.</p>
           <div class="hero__actions">
             <a class="button button--primary" href="https://discord.gg/jeUYNwpwTM" target="_blank" rel="noopener noreferrer">Join Fallatical</a>
-            <a class="button button--secondary" href="#shop">View pricing</a>
+            <a class="button button--secondary" href="#shop">Browse inventory</a>
           </div>
           <div class="server-meta">
-            <span><strong data-discord-online>96</strong> online</span>
-            <span><strong data-discord-members>497</strong> members</span>
+            <span><strong data-discord-online>101</strong> online</span>
             <span>Est. Dec 2025</span>
             <span>Active Discord shop</span>
           </div>
@@ -162,13 +166,13 @@
               <h2 style="font-size:var(--text-xl); margin-top:1rem;">Accepted payments and trade options</h2>
               <p style="margin-top:.85rem; color:var(--color-text-muted); max-width:30ch;">Pay with Cash App, VRC+, Nitro, Robux, or Steam games. Buying with $10 Nitro or 1 Month VRC+ gives up to $5 in bonus value, and boosts count as $1.</p>
             </div>
-            <span class="tag">Offers live</span>
+            <span class="tag">Promo active</span>
           </div>
           <div class="hero-stat-grid">
-            <div class="hero-stat"><strong>Free $5</strong><span>Bonus value offer</span></div>
+            <div class="hero-stat"><strong>Free $5</strong><span>With $10 Nitro or 1 Month VRC+</span></div>
             <div class="hero-stat"><strong>$1</strong><span>Boost value credit</span></div>
             <div class="hero-stat"><strong>8</strong><span>Included crash toggles</span></div>
-            <div class="hero-stat"><strong data-discord-members>497</strong><span>Community members</span></div>
+            <div class="hero-stat"><strong>Active</strong><span>Discord ordering</span></div>
           </div>
         </aside>
       </div>
@@ -182,24 +186,24 @@
             <h2>Shop pricing and current offers.</h2>
             <p>Everything here is laid out so buyers can check pricing before joining the server.</p>
           </div>
-          <a class="button button--secondary" href="https://discord.gg/jeUYNwpwTM" target="_blank" rel="noopener noreferrer">Order in Discord</a>
+          <a class="button button--secondary" href="https://discord.gg/jeUYNwpwTM" target="_blank" rel="noopener noreferrer">Buy through Discord</a>
         </div>
         <div class="grid-3">
           <article class="card">
             <div class="kicker">Live Discord stats</div>
-            <h3>Community stats</h3>
-            <p>These numbers can reflect your public Discord widget when it is available.</p>
+            <h3>Auto-updating member counter</h3>
+            <p>If your Discord server widget is enabled, these values can refresh from the public widget JSON automatically.</p>
             <div class="hero__actions" style="margin-top:1rem;">
               <span class="micro-stat"><strong data-discord-online>96</strong>&nbsp;online</span>
-              <span class="micro-stat"><strong data-discord-members>497</strong>&nbsp;members</span>
+              <span class="micro-stat"><strong data-discord-members>100</strong>&nbsp;visible in widget</span>
             </div>
-            <p class="price-note" style="margin-top:1rem;">If live stats are unavailable, the page uses your listed numbers.</p>
+            <p class="price-note" style="margin-top:1rem;">If the widget is disabled, the page falls back to your manual numbers.</p>
           </article>
 
           <article class="card">
             <div class="kicker">Payment / trade</div>
-            <h3>Accepted payments</h3>
-            <p>Use one of these payment or trade methods when placing an order.</p>
+            <h3>Accepted buy-ins</h3>
+            <p>Use these as the main payment or trade routes for getting access to items in the server.</p>
             <div style="margin-top:1rem;">
               <span class="tag">CashApp</span>
               <span class="tag">1 Month VRC+</span>
@@ -242,8 +246,8 @@
         <div class="section-heading">
           <div>
             <div class="kicker">Crash inventory</div>
-            <h2>PC, Quest, and mixed options.</h2>
-            <p>Browse the available options and pricing below.</p>
+            <h2>PC, Quest, both, and other crash options.</h2>
+            <p>The lists below keep your names and prices, including which ones are marked limited with the (L) tag.</p>
           </div>
         </div>
         <div class="grid-4">
@@ -319,7 +323,7 @@
       <div class="container grid-2">
         <article class="panel">
           <div class="kicker">Buy flow</div>
-          <h2>How ordering works.</h2>
+          <h2>Simple Discord-first ordering.</h2>
           <ul class="clean">
             <li><span class="check">✓</span>Browse the page</li>
             <li><span class="check">✓</span>Review pricing and bonus info</li>
@@ -330,10 +334,10 @@
         <article class="panel">
           <div class="kicker">Need help?</div>
           <h2>Ready when you are.</h2>
-          <p>Check the pricing, watch the preview, then join Discord to order or ask questions.</p>
+          <p>Check the pricing and view the promo, then join Discord to order or ask questions.</p>
           <div class="server-meta" style="margin-top:1.25rem;">
             <span>Pricing</span>
-            <span>Preview</span>
+            <span>Promo</span>
             <span>Discord support</span>
           </div>
         </article>
@@ -343,8 +347,13 @@
     <section class="section section--split" id="preview">
       <div class="card card--feature">
         <div class="kicker">Promo preview</div>
-        <h2>Preview before you order.</h2>
-        <p>Watch the clip here before joining the server.</p>
+        <h2>See the showcase before people buy.</h2>
+        <p>Preview the style and quality here before placing an order through Discord.</p>
+        <ul class="checklist" role="list">
+          <li>Muted autoplay showcase clip</li>
+          <li>Quick visual preview before ordering</li>
+          <li>Clean framed player for desktop and mobile</li>
+        </ul>
       </div>
       <div class="card media-card">
         <div class="kicker">Live promo</div>
@@ -352,7 +361,7 @@
           <source src="https://files.catbox.moe/h57ywa.mov" type="video/quicktime" />
           <source src="https://files.catbox.moe/h57ywa.mov" />
         </video>
-        
+        <div class="media-badge">Promo preview</div>
       </div>
     </section>
 
@@ -411,7 +420,7 @@
         <div class="cta-panel">
           <div>
             <div class="kicker">Final CTA</div>
-            <h2>Open the server and turn views into buyers.</h2>
+            <h2>Join the server when you are ready to order.</h2>
             <p>This version now has your real inventory, your Discord invite, and your video background layered under the marble theme. If you want, I can next add screenshots, a payment contact section, or a more animated premium hero.</p>
             <div class="hero__actions">
               <a class="button button--primary" href="https://discord.gg/jeUYNwpwTM" target="_blank" rel="noopener noreferrer">Join the server</a>
@@ -420,7 +429,7 @@
           </div>
           <div class="metric-grid">
             <div class="metric"><strong data-discord-online>96</strong><span>Online now</span></div>
-            <div class="metric"><strong data-discord-members>497</strong><span>Members</span></div>
+            <div class="metric"><strong>24/7</strong><span>Order access</span></div>
             <div class="metric"><strong>$5</strong><span>Promo value</span></div>
             <div class="metric"><strong>8</strong><span>Included crashes</span></div>
           </div>
@@ -476,17 +485,35 @@
       });
       const onlineTargets = Array.from(document.querySelectorAll('[data-discord-online]'));
       const memberTargets = Array.from(document.querySelectorAll('[data-discord-members]'));
+
+      function animateValue(el, next){
+        if(!el || typeof next !== 'number') return;
+        const current = Number(String(el.textContent).replace(/[^0-9]/g, '')) || 0;
+        const duration = 700;
+        const start = performance.now();
+        function step(now){
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const value = Math.round(current + (next - current) * eased);
+          el.textContent = String(value);
+          if(progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+
       async function refreshDiscordCounts(){
         try {
-          const res = await fetch('https://discord.com/api/guilds/1379250521770477628/widget.json', { cache: 'no-store' });
+          const res = await fetch('https://discord.com/api/guilds/1449902908878487674/widget.json', { cache: 'no-store' });
           if (!res.ok) return;
           const data = await res.json();
           const online = typeof data.presence_count === 'number' ? data.presence_count : null;
           const members = Array.isArray(data.members) ? data.members.length : null;
-          if (online !== null) onlineTargets.forEach(function(el){ el.textContent = String(online); });
-          if (members !== null) memberTargets.forEach(function(el){ el.textContent = String(members); });
+
+          if (online !== null) onlineTargets.forEach(el => animateValue(el, online));
+          if (members !== null) memberTargets.forEach(el => animateValue(el, members));
         } catch (err) {}
       }
+
       refreshDiscordCounts();
       setInterval(refreshDiscordCounts, 60000);
     })();
